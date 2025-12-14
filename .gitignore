@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Models (large binaries)
+_MODELS/
+
+# Runtime folders
+_00_To_Be_Processed/
+_01_Processed/
+_02_Transcripts/
+_LOGS/
+
+# Old / experimental
+_xx_old_scripts/
+watchdog/
+TTS/
+whisper.cpp-master/
+Folder_Paths-4AI.txt
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
