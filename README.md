@@ -6,6 +6,8 @@ using **whisper-cpp with native Metal GPU acceleration**.
 This project intentionally avoids Python ML inference stacks in favor of a
 deterministic, native backend that is fast, stable, and low-maintenance on macOS.
 
+This project prioritizes stability and reproducibility over experimentation.
+
 ---
 
 ## Features
