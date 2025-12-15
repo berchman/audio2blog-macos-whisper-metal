@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.berchman.whisper.publish</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/bertm/myscripts/.venv/bin/python</string>
+        <string>/Users/bertm/myscripts/03_publish_to_wordpress.py</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/bertm/myscripts</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>WP_SITE_URL</key>
+        <string>https://berchman.com</string>
+        <key>WP_USERNAME</key>
+        <string>admin-berchman</string>
+        <key>WP_APP_PASSWORD</key>
+        <string>zFae i5vV lbFC MPm9 8eTW B3op</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/bertm/myscripts/_LOGS/publish_stdout.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/bertm/myscripts/_LOGS/publish_stderr.log</string>
+</dict>
+</plist>

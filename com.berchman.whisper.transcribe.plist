@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.berchman.whisper.transcribe</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/bertm/myscripts/02_transcribe_audio_v3.sh</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/bertm/myscripts/_LOGS/transcribe_stdout.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/bertm/myscripts/_LOGS/transcribe_stderr.log</string>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/bertm/myscripts</string>
+</dict>
+</plist>

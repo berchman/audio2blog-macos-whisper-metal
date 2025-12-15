@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# launchd-safe PATH (Homebrew + system)
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
 # Resolve base directory (where this script lives)
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -14,7 +17,7 @@ mkdir -p "$LOGS_DIR"
 echo "Watching for audio files in: $INBOX_DIR"
 echo "Log file: $LOG_FILE"
 
-fswatch -0 -e "\.DS_Store$" "$INBOX_DIR" | while IFS= read -r -d $'\0' file; do
+/opt/homebrew/bin/fswatch -0 -e "\.DS_Store$" "$INBOX_DIR" | while IFS= read -r -d $'\0' file; do
     if file "$file" | grep -qi "audio"; then
         filename=$(basename "$file")
         echo "Detected audio file: $filename" | tee -a "$LOG_FILE"
