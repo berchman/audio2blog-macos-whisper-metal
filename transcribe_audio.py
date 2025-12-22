@@ -5,6 +5,11 @@ import sys
 import shutil
 from pathlib import Path
 
+TRANSCRIPTION_TAGLINE = (
+    "\n\n—\n"
+    "Transcribed locally using whisper.cpp (Metal)\n"
+    "https://github.com/berchman/macos-whisper-metal\n"
+)
 
 def run(cmd):
     subprocess.run(cmd, check=True)
@@ -61,6 +66,13 @@ def main():
 
     # Optional cleanup: keep WAV if you want debugging
     # wav_file.unlink(missing_ok=True)
+
+    # Append attribution tagline
+    try:
+        with output_txt.open("a", encoding="utf-8") as f:
+            f.write(TRANSCRIPTION_TAGLINE)
+    except Exception as e:
+        print(f"Warning: failed to append transcription tagline: {e}")
 
 
 if __name__ == "__main__":
