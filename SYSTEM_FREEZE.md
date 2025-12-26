@@ -34,16 +34,19 @@ DO:
 ---
 
 ## File Layout
-myscripts/
-├── _00_To_Be_Processed/
-├── _01_Processed/
-├── _02_Transcripts/
-├── _MODELS/
-│   └── ggml-medium.bin
-├── _LOGS/
-├── transcribe_audio.py
-├── 02_transcribe_audio_v3.sh
-└── SYSTEM_FREEZE.md
+
+## myscripts/
+## ├── _00_To_Be_Processed/
+## ├── _01_Processed/
+## ├── _02_Transcripts/
+## ├── _MODELS/
+## │   └── ggml-medium.bin
+## ├── _LOGS/
+## ├── transcribe_audio.py
+## ├── 02_transcribe_audio_v3.sh
+## └── SYSTEM_FREEZE.md
+##
+
 ---
 
 ## LaunchAgent
@@ -62,3 +65,6 @@ Logs:
 ## Last Known Good State
 Date: 2025-12-14  
 Status: Fully working, GPU accelerated, stable
+
+03_publish_to_wordpress.py frozen at v1.0
+Voice-gated, timestamp-safe, idempotent WordPress draft publisher

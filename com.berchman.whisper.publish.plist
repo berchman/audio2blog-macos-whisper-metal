@@ -12,6 +12,18 @@
         <string>/Users/bertm/myscripts/03_publish_to_wordpress.py</string>
     </array>
 
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>WP_SITE_URL</key>
+      <string>https://berchman.com</string>
+
+      <key>WP_USERNAME</key>
+      <string>admin-berchman</string>
+
+      <key>WP_APP_PASSWORD</key>
+      <string>5uxO zTRj Zids 55dL QOS0 4lF8</string>
+    </dict>
+
     <key>RunAtLoad</key>
     <true/>
 
@@ -28,7 +40,7 @@
         <key>WP_USERNAME</key>
         <string>admin-berchman</string>
         <key>WP_APP_PASSWORD</key>
-        <string>zFae i5vV lbFC MPm9 8eTW B3op</string>
+        <string>5uxO zTRj Zids 55dL QOS0 4lF8</string>
     </dict>
 
     <key>StandardOutPath</key>
