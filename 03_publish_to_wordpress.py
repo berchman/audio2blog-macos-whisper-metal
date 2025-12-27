@@ -39,6 +39,15 @@ def strip_timestamps(text: str) -> str:
         cleaned_lines.append(TIMESTAMP_RE.sub("", line))
     return "\n".join(cleaned_lines).strip()
 
+
+FOOTER_BLOCK_RE = re.compile(
+    r"\n---\nTranscribed locally with whisper\.cpp.*?\nChecksum:\s*[a-f0-9]{64}\s*\n?\Z",
+    flags=re.S | re.I
+)
+
+def strip_footer_block(text: str) -> str:
+    return FOOTER_BLOCK_RE.sub("", text).rstrip()
+
 # ----------------------------
 # Configuration defaults
 # ----------------------------
@@ -354,6 +363,10 @@ def main():
                 raw_text = path.read_text(encoding="utf-8", errors="ignore")
                 text = strip_timestamps(raw_text)
                 digest = sha256_text(text)
+
+                text = path.read_text(encoding="utf-8", errors="ignore")
+                text = strip_timestamps(text)
+                text = strip_footer_block(text)
 
                 already = state["posted"].get(key)
                 if already and already.get("sha") == digest:
