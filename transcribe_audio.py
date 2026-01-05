@@ -269,7 +269,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("audio_file", help="Path to input audio/video (mp3/m4a/aac/mov/...)")
     ap.add_argument("output_dir", help="Directory to write transcripts")
-    ap.add_argument("--model", default=str(Path.home() / "myscripts" / "_MODELS" / "ggml-medium.bin"))
+    ap.add_argument("--model", default=str(Path.home() / "_00_GIT_MASTER/transcription-to-blog" / "_MODELS" / "ggml-medium.bin"))
     ap.add_argument("--language", default="en")
     ap.add_argument("--threads", type=int, default=8)
     ap.add_argument("--beam-size", type=int, default=5)
