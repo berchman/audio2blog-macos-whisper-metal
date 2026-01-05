@@ -1,113 +1,42 @@
-# macOS Whisper Transcription (Metal)
+# macos-whisper-metal (Beta 0.5)
 
-A production-stable, automated audio transcription pipeline for **Apple Silicon Macs**
-using **whisper-cpp with native Metal GPU acceleration**.
+A local, subscription-free audio → transcript (and optional WordPress draft) pipeline for **macOS on Apple Silicon** using **whisper.cpp + Metal**.
 
-This project intentionally avoids Python ML inference stacks in favor of a
-deterministic, native backend that is fast, stable, and low-maintenance on macOS.
+## What changed in Beta 0.5
+- **Timestamps deferred** (not generated yet).
+- **Better format**: conservative paragraph breaks based on pauses (≥ 1.5s) when JSON segmentation is available.
+- **Broader input support**: handles `.mp3`, `.m4a/.aac`, `.mov` (anything `ffmpeg` can decode).
+- **Footer + word count** appended to transcript files, with a **publishing-safe footer block** that WordPress ignores by default.
+- **Checksum-based skip** so reprocessing the same audio won't re-run or double-append.
 
-This project prioritizes stability and reproducibility over experimentation.
+## Requirements (fresh machine friendly)
+1. macOS 13+ (Ventura or newer recommended)
+2. Apple Silicon (M1/M2/M3/M4)
+3. Homebrew (installer below)
+4. `ffmpeg`, `fswatch`, `whisper-cpp` (Homebrew formula)
 
----
-
-## Features
-
-- 📂 Watch-folder based automation
-- ⚡ Apple Metal GPU acceleration (M1 / M2 / M3)
-- 🕒 Timestamps enabled
-- 🧑‍🤝‍🧑 Speaker diarization (experimental)
-- 🚀 Runs automatically via macOS LaunchAgent
-- 🧊 System “freeze” documentation for long-term stability
-
----
-
-## Why whisper-cpp (not PyTorch)
-
-On Apple Silicon, Python GPU backends can be fragile.
-This pipeline uses **whisper-cpp** to achieve:
-
-- Zero PyTorch / CUDA / MPS dependency churn
-- Deterministic inference
-- Predictable performance
-- Minimal runtime surface area
-
-Python is used **only for orchestration**, not model execution.
-
----
-
-## Requirements
-
-- macOS (Apple Silicon)
-- Homebrew
-- `whisper-cpp`
-- `ffmpeg`
-- `fswatch`
-
----
-
-## Installation
-
+### Install Homebrew
 ```bash
-brew install whisper-cpp ffmpeg fswatch
-```
-## Download a model:
-```bash
-mkdir -p _MODELS
-curl -L -o _MODELS/ggml-medium.bin \
-  https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-medium.bin
-```  
-## Usage
-```bash
-./02_transcribe_audio_v3.sh
-```
-Drop audio files into 
-```bash
-_00_To_Be_Processed/.
-```
-Transcripts will appear in:
-```bash
-__02_Transcripts/
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-## Automation
-
-The watcher can be run automatically on login via a macOS LaunchAgent.
-See SYSTEM_FREEZE.md for details.
-
-
-## Stability Notes
-
-This system is intentionally conservative.
-
-Before upgrading:
-	•	Read SYSTEM_FREEZE.md
-	•	Test changes in isolation
-	•	Avoid blind brew upgrade
-
-
-## License
-
-MIT
-
+### Install dependencies
 ```bash
-This tone signals:
-- competence
-- restraint
-- real-world experience
-
-Exactly what you want for a public repo.
-
----
-
-## Phase 3 — Badges + demo GIF
-
-### Badges (simple, tasteful)
-
-Add this **directly under the title** in `README.md`:
-
-```md
-![macOS](https://img.shields.io/badge/macOS-Apple%20Silicon-black)
-![Metal](https://img.shields.io/badge/GPU-Metal-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+brew update
+brew install ffmpeg fswatch whisper-cpp
 ```
 
+### Model
+Download a whisper.cpp model (example: medium) and put it here:
+```
+~/myscripts/_MODELS/ggml-medium.bin
+```
+
+## Run one file manually
+```bash
+python3 ./transcribe_audio.py ./_01_Processed/example.m4a ./_02_Transcripts
+```
+
+## Notes
+- Transcription uses `whisper-cli` from the Homebrew `whisper-cpp` package.
+- If you later enable timestamps for scripts, we’ll add them as an optional mode without polluting raw transcripts or blog drafts.
